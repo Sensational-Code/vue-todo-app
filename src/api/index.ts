@@ -46,8 +46,8 @@ export default {
 	 * @param {number} id - The id of the task to delete
 	 */
 	deleteTask(id: number) {
-		let index = DB.tables.tasks.findIndex(task => task.id === id);
-		DB.tables.tasks.splice(index, 1);
+		let taskIndex = DB.tables.tasks.findIndex(task => task.id === id);
+		DB.tables.tasks.splice(taskIndex, 1);
 		DB.save();
 
 		return ResponseTaskListsBuilder();
