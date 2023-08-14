@@ -58,5 +58,16 @@ export default {
 	 * @param {number} { toTaskListId } - The id of the task list to move the tasks to
 	 * @param {number[]} { tasks } - An array of task id's to move
 	 */
-	moveTasks({ toTaskListId, taskIds }:  { toTaskListId: number, taskIds: number[] }) {}
+	moveTasks({ toTaskListId, taskIds }:  { toTaskListId: number, taskIds: number[] }) {
+		DB.tables.tasks.forEach(task => {
+			taskIds.forEach(taskId => {
+				if (taskId === task.id) {
+					task.taskListId = toTaskListId;
+				}
+			});
+		});
+		DB.save();
+
+		return ResponseTaskListsBuilder();
+	}
 }
