@@ -48,6 +48,8 @@
 
 		methods: {
 			handleAddTask() {
+				if (this.newTaskText === '') return;
+
 				this.$emit('add-task', this.newTaskText);
 				this.newTaskText = '';
 			},
