@@ -2,8 +2,9 @@
 <template>
 	<div class="task-list">
 
+		<!-- Task title -->
 		<h2 class="task-list__title">{{ titleText }}</h2>
-		<span class="task-list--subtext">{{ tasksCompletedText }}</span>
+		<span class="task-list__subtext">{{ tasksCompletedText }}</span>
 
 		<!-- Task input -->
 		<div class="task-list__header">
@@ -99,9 +100,10 @@
 
 	.task-list__title {
 		font-size: 30px;
+		font-weight: 500;
 	}
 
-	.task-list--subtext {
+	.task-list__subtext {
 		color: rgb(84, 127, 255);
 	}
 
