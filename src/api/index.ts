@@ -33,8 +33,8 @@ export default {
 	editTask({ id, text, completed }: { id: number, text: string, completed: boolean }) {
 		let task = DB.tables.tasks.find(task => task.id === id);
 		if (task) {
-			task.text = text || task.text;
-			task.completed = completed || task.completed;
+			task.text = text ?? task.text;
+			task.completed = completed ?? task.completed;
 			DB.save();
 		}
 
