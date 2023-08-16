@@ -2,7 +2,7 @@
 <template>
 	<div class="task-list">
 
-		<h2 class="task-list__title">Today's Tasks</h2>
+		<h2 class="task-list__title">{{ titleText }}</h2>
 		<span class="task-list--subtext">{{ tasksCompletedText }}</span>
 
 		<!-- Task input -->
@@ -23,11 +23,14 @@
 
 <script>
 
+	import moment from 'moment';
+
 	export default {
 		emits: ['add-task', 'delete-task'],
 
 		props: {
-			tasks: Object
+			tasks: Array,
+			date: String
 		},
 
 		data() {
@@ -37,6 +40,26 @@
 		},
 
 		computed: {
+			titleText() {
+				let listDate = moment(this.date);
+
+				if (listDate.isSame(moment(), 'day')) {
+					return 'Today\'s Tasks';
+				}
+
+				let tomorrow = moment().add(1, 'days');
+				if (listDate.isSame(tomorrow, 'day')) {
+					return 'Tomorrow\'s Tasks';
+				}
+
+				let yesterday = moment().subtract(1, 'days');
+				if (listDate.isSame(yesterday, 'day')) {
+					return 'Yesterday\'s Tasks';
+				}
+
+				return `${moment(this.date).format('MMMM Do')} Tasks`;
+			},
+
 			tasksCompletedText() {
 				let amountCompleted = this.tasks.reduce((amountCompleted, task) => {
 					return task.completed ? amountCompleted += 1 : amountCompleted;
