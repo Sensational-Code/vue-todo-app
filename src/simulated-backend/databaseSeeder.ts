@@ -3,10 +3,10 @@ import moment from 'moment';
 import { DBTaskList, DBTask } from './database';
 
 export default function DBSeeder(tables: any) {
-	let yesterday = moment().subtract(1, 'days');
+	let tomorrow = moment().add(1, 'days');
 
 	for (let i = 0; i < 5; ++i) {
-		let taskList = new DBTaskList({ date: yesterday.clone().add(i, 'days').format() });
+		let taskList = new DBTaskList({ date: tomorrow.clone().subtract(i, 'days').format() });
 		tables.taskLists.push(taskList);
 
 		for (let j = 0; j < 6; ++j) {
