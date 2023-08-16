@@ -43,7 +43,7 @@
 </script>
 
 <style scoped>
-	
+
 	.timeline {
 		padding: 1rem;
 	}

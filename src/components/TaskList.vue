@@ -65,7 +65,7 @@
 	.task-list {
 		padding: 1rem;
 		display: flex;
-		flex-direction: column
+		flex-direction: column;
 	}
 
 	.task-list__title {
