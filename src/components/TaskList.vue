@@ -13,8 +13,8 @@
 
 		<!-- Tasks -->
 		<div class="task-list__tasks">
-			<div v-for="task in tasks" class="task-list__item" :key="task.id">
-				<span @click="handleDeleteTask(task)">{{ task.text }}</span>
+			<div v-for="task in tasks" class="task-list__item" :class="{ 'task-list__item--completed': task.completed }" :key="task.id">
+				<span @click="handleCompleteTask(task)">{{ task.text }}</span>
 			</div>
 		</div>
 
@@ -26,7 +26,7 @@
 	import moment from 'moment';
 
 	export default {
-		emits: ['add-task', 'delete-task'],
+		emits: ['add-task', 'complete-task', 'delete-task'],
 
 		props: {
 			tasks: Array,
@@ -75,6 +75,10 @@
 
 				this.$emit('add-task', this.newTaskText);
 				this.newTaskText = '';
+			},
+
+			handleCompleteTask(task) {
+				this.$emit('complete-task', task);
 			},
 
 			handleDeleteTask(task) {
@@ -142,6 +146,10 @@
 
 	.task-list__item:not(:last-child) {
 		border-bottom: 1px solid rgb(218, 218, 218);
+	}
+
+	.task-list__item--completed {
+		text-decoration: line-through;
 	}
 
 </style>

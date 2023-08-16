@@ -3,7 +3,14 @@
 	<div class="task-app">
 		<div class="task-app__inner">
 			<Timeline :taskLists="taskLists" :selectedListId="currentTaskListId" @selected-list="handleSelectedList" />
-			<TaskList v-if="currentTaskList" :tasks="currentTaskList" @add-task="handleAddTask" @delete-task="handleDeleteTask" />
+			<TaskList
+				v-if="currentTaskList"
+				:tasks="currentTaskList.tasks"
+				:date="currentTaskList.date"
+				@add-task="handleAddTask"
+				@complete-task="handleCompleteTask"
+				@delete-task="handleDeleteTask"
+			/>
 		</div>
 	</div>
 </template>
@@ -29,7 +36,7 @@
 
 		computed: {
 			currentTaskList() {
-				return this.taskLists.find(taskList => taskList.id === this.currentTaskListId)?.tasks;
+				return this.taskLists.find(taskList => taskList.id === this.currentTaskListId);
 			}
 		},
 
@@ -49,6 +56,10 @@
 
 			async handleAddTask(text) {
 				this.taskLists = await api.createTask({ taskListId: this.currentTaskListId, text });
+			},
+
+			async handleCompleteTask(task) {
+				this.taskLists = await api.editTask({ id: task.id, completed: !task.completed });
 			},
 
 			async handleDeleteTask(task) {
