@@ -4,4 +4,6 @@ body, #app {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(249, 251, 253);
+  font-family: "Montserrat", sans-serif;
 }

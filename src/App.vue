@@ -1,9 +1,11 @@
 
 <template>
-  <div class="task-app">
-  	<Timeline :taskLists="taskLists" :selectedListId="currentTaskListId" @selected-list="handleSelectedList" />
-  	<TaskList v-if="currentTaskList" :tasks="currentTaskList" @add-task="handleAddTask" @delete-task="handleDeleteTask" />
-  </div>
+	<div class="task-app">
+		<div class="task-app__inner">
+			<Timeline :taskLists="taskLists" :selectedListId="currentTaskListId" @selected-list="handleSelectedList" />
+			<TaskList v-if="currentTaskList" :tasks="currentTaskList" @add-task="handleAddTask" @delete-task="handleDeleteTask" />
+		</div>
+	</div>
 </template>
 
 <script>
@@ -61,7 +63,17 @@
 
 	.task-app {
 		display: flex;
-		border: 1px solid gray;
+		margin: auto;
+		max-width: 768px;
+		height: 80vh;
+		background-color: rgb(255, 255, 255);
+		border-radius: 20px;
+		box-shadow: 0 23px 20px -20px rgba(115,162,208,0.1), 0 0 15px rgba(115,162,208,0.06);
+	}
+
+	.task-app__inner {
+		padding: 20px;
+		display: flex;
 	}
 
 </style>

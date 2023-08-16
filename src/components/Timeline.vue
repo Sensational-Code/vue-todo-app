@@ -6,11 +6,12 @@
 		<div
 			v-for="list in taskLists"
 			:key="list.id" 
-			:class="{ 'timeline-selected': selectedListId === list.id }"
+			class="timeline__date"
+			:class="{ 'timeline__date--selected': selectedListId === list.id }"
+			@click="$emit('selected-list', list.id)"
 		>
-			<div @click="$emit('selected-list', list.id)">
-				{{ formatDate(list.date) }}
-			</div>
+			<div>{{ getMonth(list.date) }}</div>
+			<div>{{ getDate(list.date) }}</div>
 		</div>
 
 	</div>
@@ -29,8 +30,12 @@
 		},
 
 		methods: {
-			formatDate(date) {
-				return moment(date).format('MMM DD');
+			getMonth(date) {
+				return moment(date).format('MMM');
+			},
+
+			getDate(date) {
+				return moment(date).format('DD');
 			}
 		}
 	}
@@ -43,8 +48,21 @@
 		padding: 1rem;
 	}
 
-	.timeline-selected {
-		color: green;
+	.timeline__date {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: 16px;
+		width: 64px;
+		height: 64px;
+		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+		border: 1px solid rgb(218, 218, 218);
+		border-radius: 15px;
+		margin-bottom: 10px;
+	}
+
+	.timeline__date--selected {
+		border: 1px solid #99EF2C;
 	}
 
 </style>
