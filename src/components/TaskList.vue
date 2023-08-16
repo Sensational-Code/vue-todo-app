@@ -65,7 +65,7 @@
 					return task.completed ? amountCompleted += 1 : amountCompleted;
 				}, 0);
 
-				return `${amountCompleted} of ${this.tasks.length-1} tasks completed`
+				return `${amountCompleted} of ${this.tasks.length} tasks completed`;
 			}
 		},
 
