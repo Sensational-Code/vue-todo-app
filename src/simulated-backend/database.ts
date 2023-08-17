@@ -58,7 +58,8 @@ class Database {
 	public saveTables: boolean = false;
 
 	constructor() {
-		let savedTables: any = JSON.parse(localStorage.getItem('db_tables') || '');
+		// @ts-ignore
+		let savedTables: any = JSON.parse(localStorage.getItem('db_tables'));
 
 		if (this.saveTables && savedTables) {
 			this.tables = savedTables;
