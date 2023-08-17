@@ -7,7 +7,7 @@ export default {
 	/**
 	 * Get all task lists
 	 */
-	getTaskLists(): ResponseTaskListsInterface[] {
+	getTaskLists(): ResponseTaskListInterface[] {
 		return ResponseTaskListsBuilder();
 	},
 
